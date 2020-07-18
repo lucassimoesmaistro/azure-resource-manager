@@ -1,7 +1,8 @@
 az group create --name rsg-armtemplate --location "Brazil South"
 
-$templateFile="03addnameparameter.json"
-az deployment group create --name $templateFile `
-                           --resource-group rsg-armtemplate `
-                           --template-file $templateFile `
-                           --parameters storageName=strlsmteste20200718
+$templateFile="05addVariables.json"
+az deployment group create `
+                    --name $templateFile `
+                    --resource-group rsg-armtemplate `
+                    --template-file $templateFile `
+                    --parameters storagePrefix=store storageSKU=Standard_LRS
