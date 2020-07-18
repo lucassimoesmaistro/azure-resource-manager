@@ -1,6 +1,6 @@
 az group create --name rsg-armtemplate --location "Brazil South"
 
-$templateFile="05addVariables.json"
+$templateFile="07useExportedTemplate.json"
 az deployment group create `
                     --name $templateFile `
                     --resource-group rsg-armtemplate `
