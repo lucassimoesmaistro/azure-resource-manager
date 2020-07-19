@@ -1,10 +1,19 @@
-az group create --name rsg-armtemplate --location "Brazil South"
-
 $templateFile="09addTags.json"
+$devParameterFile="azuredeploy.parameters.dev.json"
+$prdParameterFile="azuredeploy.parameters.dev.json"
+
+az group create --name rsg-dev-armtemplate --location "Brazil South"
+
 az deployment group create `
                     --name $templateFile `
-                    --resource-group rsg-armtemplate `
+                    --resource-group rsg-dev-armtemplate `
                     --template-file $templateFile `
-                    --parameters storagePrefix=store
-                                 storageSKU=Standard_LRS `
-                                 webAppName=demoapp
+                    --parameters $devParameterFile
+
+az group create --name rsg-prd-armtemplate --location "Brazil South"
+
+az deployment group create `
+                    --name $templateFile `
+                    --resource-group rsg-prd-armtemplate `
+                    --template-file $templateFile `
+                    --parameters $prdParameterFile
